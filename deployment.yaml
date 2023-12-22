@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-flask
+  labels:
+    app: sample-flask
+spec:
+  replicas: 3
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: sample-flask
+  template:
+    metadata:
+      labels:
+        app: sample-flask
+    spec:
+      containers:
+      - name: flask-app
+        image: kdev1234/flask-market:0.0.12
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
